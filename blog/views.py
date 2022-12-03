@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import PopularMovie, ComedyMovie, ActionMovie
+from .models import PopularMovie, ComedyMovie, ActionMovie, MyList
 
 
 def index(request):
@@ -11,5 +11,8 @@ def index(request):
     return render(request, 'index.html', context=context)
 
 def about(request):
+    context = {
+        'myList': MyList.objects.all(),
+    }
     return render(request, 'description.html')
 

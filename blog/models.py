@@ -23,3 +23,11 @@ class ActionMovie(models.Model):
 
     def __str__(self):
         return self.title
+
+class MyList(models.Model):
+    image = models.ImageField(upload_to='images/', blank=True, null=True)
+    title = models.CharField(max_length=200)
+    
+
+    def __str__(self):
+        return self.title
