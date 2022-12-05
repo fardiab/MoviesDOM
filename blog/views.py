@@ -16,3 +16,7 @@ def about(request):
     }
     return render(request, 'description.html')
 
+
+
+    
+
