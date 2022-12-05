@@ -2,6 +2,7 @@ from django.http import JsonResponse
 from blog.models import PopularMovie, ComedyMovie, ActionMovie
 from .serializers import PopularMoviesSerializer, ComedyMoviesSerializer, ActionMoviesSerializer
 from rest_framework.decorators import api_view
+from rest_framework.response import Response
 
 @api_view(['GET', 'POST'])
 def popular_movies_list(request):
@@ -9,12 +10,13 @@ def popular_movies_list(request):
         pm_list = PopularMovie.objects.all()
         serializer = PopularMoviesSerializer(pm_list, many=True) 
         return JsonResponse({'popular movie': serializer.data}, safe=False)
+    
     if request.method == 'POST':
         serializer = PopularMoviesSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
-            return JsonResponse(serializer.data, status=201)
-        return JsonResponse(serializer.errors, status=400)
+            return Response(serializer.data, status=201)
+        return Response(serializer.errors, status=400)
 
         
 def comedy_movies_list(request):
