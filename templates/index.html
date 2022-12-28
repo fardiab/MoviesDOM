@@ -1,8 +1,57 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block scripts %}
-    <script type='module' src="{% static 'js/main.js' %}"></script>
+    <script src="{% static 'js/main.js' %}"></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
+    <script>
+        window.addEventListener('load', async function(){
+            let response = await fetch('/api/popular-movies');
+            let movies = await response.json();
+            for(let movie of movies){
+                document.querySelector('#popularMovieContainer').innerHTML += `
+                <div class="slide_inner_card">
+                    <div class="slider_poster">
+                        <img src="${movie.image}" alt="" width='265' height='392'>
+                        <h4>${movie.title}</h4>
+                    </div>  
+                </div>
+                `
+            }
+            
+        })
+
+        window.addEventListener('load', async function(){
+            let response = await fetch('/api/comedy-movies');
+            let movies = await response.json();
+            for(let movie of movies){
+                document.querySelector('#bestComedyContainer').innerHTML += `
+                <div class="slide_inner_card">
+                    <div class="slider_poster">
+                        <img src="${movie.image}" alt="" width='265' height='392'>
+                        <h4>${movie.title}</h4>
+                    </div>  
+                </div>
+                `
+            }
+            
+        })
+
+        window.addEventListener('load', async function(){
+            let response = await fetch('/api/action-movies');
+            let movies = await response.json();
+            for(let movie of movies){
+                document.querySelector('#actionMovieContainer').innerHTML += `
+                <div class="slide_inner_card">
+                    <div class="slider_poster">
+                        <img src="${movie.image}" alt="" width='265' height='392'>
+                        <h4>${movie.title}</h4>
+                    </div>  
+                </div>
+                `
+            }
+            
+        })
+    </script>
 {% endblock  %}
 {% block content %}
 
@@ -221,14 +270,7 @@
 
                 </div>
                 <div class="slider_center_container" id="popularMovieContainer">
-                    {% for movie in popularMovies %}
-                    <div class="slide_inner_card">
-                        <div class="slider_poster">
-                            <img src="{{ movie.image.url }}" alt="" width='265' height='392'>
-                            <h4>{{ movie.title }}</h4>
-                        </div>  
-                    </div> 
-                    {% endfor %}
+                    
                 </div>
                 <div class="slider_right_container">
 
@@ -265,14 +307,6 @@
 
                 </div>
                 <div class="slider_center_container" id="bestComedyContainer">
-                    {% for movie in comedyMovies %}
-                    <div class="slide_inner_card">
-                        <div class="slider_poster">
-                            <img src="{{ movie.image.url }}" alt="" width='265' height='392'>
-                            <h4>{{ movie.title }}</h4>
-                        </div>  
-                    </div>
-                    {% endfor %}
 
                 </div>
                 <div class="slider_right_container">
@@ -311,14 +345,6 @@
 
                 </div>
                 <div class="slider_center_container" id="actionMovieContainer">
-                    {% for movie in actionMovies %}
-                    <div class="slide_inner_card">
-                        <div class="slider_poster">
-                            <img src="{{ movie.image.url }}" alt="" width='265' height='392'>
-                            <h4>{{ movie.title }}</h4>
-                        </div>  
-                    </div>
-                    {% endfor %}
 
                 </div>
                 <div class="slider_right_container">

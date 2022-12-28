@@ -1,15 +1,17 @@
-import {getActionMovies, getComedyMovies, getPopularMovies} from '../js/config.js';
-import mainCard from '../js/mainCard.js';
-import Slider from "../js/slider.js";
-import VideoCard from '../js/videoCard.js';
-import {container,comedyContainer,actionContainer,popularLeftBtn,popularRightBtn,bestLeftBtn,bestRightBtn,actionLeftBtn,actionRightBtn,videosContainer} from '../js/query.js';
+// import {getPopularMovies, getActionMovies, getComedyMovies} from './config';
+// import mainCard from './mainCard';
+import Slider from "./slider";
+// import VideoCard from '../js/videoCard.js';
+import {container,comedyContainer,actionContainer,popularLeftBtn,popularRightBtn,bestLeftBtn,bestRightBtn,actionLeftBtn,actionRightBtn,videosContainer} from './query';
+
+
+
 
 getPopularMovies()
     .then(resp => {
         resp.forEach(movie => {
             container.innerHTML += mainCard.render(movie)
         })
-        
         Slider.buttons(popularLeftBtn, popularRightBtn, container.children)
     })
 

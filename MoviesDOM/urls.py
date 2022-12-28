@@ -17,15 +17,12 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
-from . import views
+
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('blog.urls')),
-    path('list1/', views.popular_movies_list),
-    path('list2/', views.comedy_movies_list),
-    path('list3/', views.action_movies_list),
 ]
 
 if settings.DEBUG:

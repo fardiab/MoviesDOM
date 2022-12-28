@@ -4,6 +4,9 @@ import Slider from "./slider";
 // import VideoCard from '../js/videoCard.js';
 import {container,comedyContainer,actionContainer,popularLeftBtn,popularRightBtn,bestLeftBtn,bestRightBtn,actionLeftBtn,actionRightBtn,videosContainer} from './query';
 
+
+
+
 getPopularMovies()
     .then(resp => {
         resp.forEach(movie => {
